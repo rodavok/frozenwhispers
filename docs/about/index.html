@@ -3,30 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-  <meta name="description" content="{{ site.description }}">
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
+  <title>About | Frozen Whispers</title>
+  <meta name="description" content="Articles, dashboards, and data visualizations.">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="alternate" type="application/rss+xml" title="Frozen Whispers" href="/feed.xml">
 </head>
 <body>
   <div class="background-layer"></div>
 
   <div class="site-container">
     <header class="site-header">
-      <a href="{{ '/' | relative_url }}" class="site-title">{{ site.title }}</a>
+      <a href="/" class="site-title">Frozen Whispers</a>
       <nav class="site-nav">
-        <a href="{{ '/' | relative_url }}">Home</a>
-        <a href="{{ '/reading' | relative_url }}">Reading</a>
-        <a href="{{ '/about' | relative_url }}">About</a>
+        <a href="/">Home</a>
+        <a href="/reading">Reading</a>
+        <a href="/about">About</a>
       </nav>
     </header>
 
     <main class="content-pane">
-      {{ content }}
+      <article class="page">
+  <header class="page-header">
+    <h1 class="page-title">About</h1>
+  </header>
+
+  <div class="page-content">
+    <p>Frozen Whispers is a collection of articles, dashboards, and data visualizations.</p>
+
+  </div>
+</article>
+
     </main>
 
     <footer class="site-footer">
-      <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</p>
+      <p>&copy; 2026 Frozen Whispers</p>
     </footer>
   </div>
 
@@ -53,7 +63,7 @@
       ];
       const randomBg = backgrounds[Math.floor(Math.random() * backgrounds.length)];
       document.querySelector('.background-layer').style.backgroundImage =
-        'url("{{ "/backgrounds/" | relative_url }}' + randomBg + '")';
+        'url("/backgrounds/' + randomBg + '")';
     })();
   </script>
 </body>
