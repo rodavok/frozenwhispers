@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Energy | Frozen Whispers</title>
+  <meta name="description" content="Articles, dashboards, and data visualizations.">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="alternate" type="application/rss+xml" title="Frozen Whispers" href="/feed.xml">
+</head>
+<body>
+  <div class="background-layer"></div>
+
+  <div class="site-container">
+    <header class="site-header">
+      <a href="/" class="site-title">Frozen Whispers</a>
+      <nav class="site-nav">
+        <a href="/">Home</a>
+        <a href="/reading">Reading</a>
+        <a href="/about">About</a>
+      </nav>
+    </header>
+
+    <main class="content-pane">
+      <article class="page">
+  <header class="page-header">
+    <h1 class="page-title">Energy</h1>
+  </header>
+
+  <div class="page-content">
+    <div class="energy-widget">
+  <h3>Claude Code Energy Usage</h3>
+
+  <div class="energy-stats">
+    <div class="energy-stat">
+      <span class="stat-value">6528.7</span>
+      <span class="stat-label">Watt-hours</span>
+    </div>
+    <div class="energy-stat">
+      <span class="stat-value">544.1</span>
+      <span class="stat-label">Phone Charges</span>
+    </div>
+    <div class="energy-stat">
+      <span class="stat-value">5596k</span>
+      <span class="stat-label">Tokens</span>
+    </div>
+    <div class="energy-stat">
+      <span class="stat-value">1312</span>
+      <span class="stat-label">Conversations</span>
+    </div>
+  </div>
+
+  <div class="energy-chart-container">
+    <canvas id="energyChart"></canvas>
+  </div>
+
+  <div class="energy-equivalents">
+    <p class="equiv-title">Energy Equivalents</p>
+    <ul>
+      <li>🚗 6.2 miles in a Corolla</li>
+      <li>🔌 652.9 hrs of LED bulb</li>
+      <li>✈️ 20.402 passenger-miles flown</li>
+    </ul>
+  </div>
+
+  <p class="energy-footer">
+    Model: default ·
+    Updated: Feb 13, 2026
+  </p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+(function() {
+  const topicData = {"Https / Url Https / Url / Com / Https Domain":1603.0933333333332,"Python / File / Csv / Row / Pandas":191.92016666666666,"Water / Heat / Light / Air / Use":416.59799999999996,"Battery / Wire / Power / Solder / Thermostat":167.3478333333333,"Nthe / Use / Word / Claude / Time":1243.4636666666668,"Tailscale / Network / Node / Home / Exit":95.55699999999999,"File / Windows / Drive / Tld / Folder":680.4455,"Steam / Game / Games / Controller / Gaming":130.8405,"Python / Nprint / Model / Nimport / Print":400.4501666666667,"Bash / Nsudo / Install / Linux / Bash Nsudo":521.0683333333333,"Network / Docker / Home / Vpn / Container":232.89699999999996,"Git / Ngit / Branch / Repository / Commit":87.92583333333333,"Flags Citations / Uuid Flags / Txt / Folders / Following":30.591166666666666,"Data / Column / Table / Sql / Date":390.88466666666665,"Uncategorized":0.3593333333333333,"Columns / Column / Dataframe / Pandas / Python":335.2673333333333};
+
+  const sorted = Object.entries(topicData)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 8);
+
+  const labels = sorted.map(([t, _]) => t);
+  const values = sorted.map(([_, v]) => v);
+
+  const colors = [
+    '#3b82f6', '#ef4444', '#22c55e', '#a855f7',
+    '#f97316', '#06b6d4', '#eab308', '#ec4899'
+  ];
+
+  new Chart(document.getElementById('energyChart'), {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Wh',
+        data: values,
+        backgroundColor: colors.slice(0, labels.length),
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.parsed.y.toFixed(2) + ' Wh'
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: '#888' },
+          grid: { display: false }
+        },
+        y: {
+          beginAtZero: true,
+          ticks: {
+            color: '#888',
+            callback: v => v.toFixed(1) + ' Wh'
+          },
+          grid: { color: '#222' }
+        }
+      }
+    }
+  });
+})();
+</script>
+
+<style>
+.energy-widget {
+  background: rgba(20, 20, 20, 0.9);
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 24px;
+  margin: 1.5rem 0;
+}
+
+.energy-widget h3 {
+  margin: 0 0 20px 0;
+  font-size: 1.2rem;
+  color: #e8e8e8;
+  border-bottom: 1px solid #333;
+  padding-bottom: 12px;
+}
+
+.energy-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.energy-stat {
+  text-align: center;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #7ab8e0;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.energy-chart-container {
+  height: 200px;
+  margin-bottom: 20px;
+}
+
+.energy-equivalents {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+
+.equiv-title {
+  font-size: 0.8rem;
+  color: #888;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.energy-equivalents ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.energy-equivalents li {
+  font-size: 0.9rem;
+  color: #b0b0b0;
+}
+
+.energy-footer {
+  font-size: 0.75rem;
+  color: #555;
+  text-align: right;
+  margin: 0;
+}
+</style>
+
+
+  </div>
+</article>
+
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; 2026 Frozen Whispers</p>
+    </footer>
+  </div>
+
+  <script>
+    (function() {
+      const backgrounds = [
+        'trees%203.gif',
+        'trees%202.jpg',
+        'pattern%20549.gif',
+        'pattern%20600.gif',
+        'pattern%2044.gif',
+        'pattern%2056.gif',
+        'flowers%201.jpg',
+        'flowers%207.gif',
+        '777.GIF',
+        '610.GIF',
+        '011.GIF',
+        '026.GIF',
+        '036C.jpg',
+        '499.GIF',
+        '653.GIF',
+        '621.GIF',
+        '670.GIF'
+      ];
+      const randomBg = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+      document.querySelector('.background-layer').style.backgroundImage =
+        'url("/backgrounds/' + randomBg + '")';
+    })();
+  </script>
+</body>
+</html>

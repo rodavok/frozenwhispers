@@ -1,0 +1,184 @@
+<div class="energy-widget">
+  <h3>Claude Code Energy Usage</h3>
+
+  <div class="energy-stats">
+    <div class="energy-stat">
+      <span class="stat-value">{{ site.data.claude_energy.total_wh | round: 1 }}</span>
+      <span class="stat-label">Watt-hours</span>
+    </div>
+    <div class="energy-stat">
+      <span class="stat-value">{{ site.data.claude_energy.equivalent_phone_charges | round: 1 }}</span>
+      <span class="stat-label">Phone Charges</span>
+    </div>
+    <div class="energy-stat">
+      <span class="stat-value">{{ site.data.claude_energy.total_tokens | divided_by: 1000 }}k</span>
+      <span class="stat-label">Tokens</span>
+    </div>
+    <div class="energy-stat">
+      <span class="stat-value">{{ site.data.claude_energy.conversations }}</span>
+      <span class="stat-label">Conversations</span>
+    </div>
+  </div>
+
+  <div class="energy-chart-container">
+    <canvas id="energyChart"></canvas>
+  </div>
+
+  <div class="energy-equivalents">
+    <p class="equiv-title">Energy Equivalents</p>
+    <ul>
+      <li>🚗 {{ site.data.claude_energy.equiv_corolla_miles | round: 3 }} miles in a Corolla</li>
+      <li>🔌 {{ site.data.claude_energy.equivalent_led_bulb_hours | round: 1 }} hrs of LED bulb</li>
+      <li>✈️ {{ site.data.claude_energy.equiv_flight_miles | round: 3 }} passenger-miles flown</li>
+    </ul>
+  </div>
+
+  <p class="energy-footer">
+    Model: {{ site.data.claude_energy.model_tier }} ·
+    Updated: {{ site.data.claude_energy.generated_at | date: "%b %d, %Y" }}
+  </p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+(function() {
+  const topicData = {{ site.data.claude_energy.by_topic | jsonify }};
+
+  const sorted = Object.entries(topicData)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 8);
+
+  const labels = sorted.map(([t, _]) => t);
+  const values = sorted.map(([_, v]) => v);
+
+  const colors = [
+    '#3b82f6', '#ef4444', '#22c55e', '#a855f7',
+    '#f97316', '#06b6d4', '#eab308', '#ec4899'
+  ];
+
+  new Chart(document.getElementById('energyChart'), {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Wh',
+        data: values,
+        backgroundColor: colors.slice(0, labels.length),
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.parsed.y.toFixed(2) + ' Wh'
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: '#888' },
+          grid: { display: false }
+        },
+        y: {
+          beginAtZero: true,
+          ticks: {
+            color: '#888',
+            callback: v => v.toFixed(1) + ' Wh'
+          },
+          grid: { color: '#222' }
+        }
+      }
+    }
+  });
+})();
+</script>
+
+<style>
+.energy-widget {
+  background: rgba(20, 20, 20, 0.9);
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 24px;
+  margin: 1.5rem 0;
+}
+
+.energy-widget h3 {
+  margin: 0 0 20px 0;
+  font-size: 1.2rem;
+  color: #e8e8e8;
+  border-bottom: 1px solid #333;
+  padding-bottom: 12px;
+}
+
+.energy-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.energy-stat {
+  text-align: center;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #7ab8e0;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.energy-chart-container {
+  height: 200px;
+  margin-bottom: 20px;
+}
+
+.energy-equivalents {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+
+.equiv-title {
+  font-size: 0.8rem;
+  color: #888;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.energy-equivalents ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.energy-equivalents li {
+  font-size: 0.9rem;
+  color: #b0b0b0;
+}
+
+.energy-footer {
+  font-size: 0.75rem;
+  color: #555;
+  text-align: right;
+  margin: 0;
+}
+</style>
