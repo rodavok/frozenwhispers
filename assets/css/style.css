@@ -318,8 +318,30 @@ tr:hover {
   background: #16222a;
 }
 
+/* A wide table scrolls inside this box rather than pushing the page sideways. */
+.media-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #333 transparent;
+}
+
+.media-table-wrap::-webkit-scrollbar {
+  height: 8px;
+}
+
+.media-table-wrap::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.media-table-wrap::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 4px;
+}
+
 .media-table {
   font-size: 0.85rem;
+  min-width: 100%;
 }
 
 .media-table th,
@@ -439,16 +461,42 @@ tr:hover {
 
   h1 { font-size: 1.8rem; }
 
-  /* Drop the least essential media columns rather than scroll sideways. */
+  /* Drop the least essential media columns rather than scroll sideways.
+     Match on explicit classes - :first-of-type would key off the element
+     type (th/td), where the first one is the cover cell, not a date. */
   .media-table .col-creator,
   .media-table .col-year,
-  .media-table th.col-date:first-of-type,
-  .media-table td.col-date:first-of-type {
+  .media-table .col-started {
     display: none;
   }
 
   .media-table th,
   .media-table td {
     padding: 8px 6px;
+  }
+}
+
+/* Phones: trim the table down until it fits without scrolling. */
+@media (max-width: 480px) {
+  .content-pane {
+    padding: 25px 15px;
+  }
+
+  .media-table {
+    font-size: 0.8rem;
+  }
+
+  .media-table th,
+  .media-table td {
+    padding: 8px 4px;
+  }
+
+  .media-table .col-cover {
+    width: 36px;
+  }
+
+  .media-cover {
+    width: 32px;
+    height: 45px;
   }
 }

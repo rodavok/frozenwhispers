@@ -24,6 +24,7 @@
   </div>
 </div>
 
+<div class="media-table-wrap">
 <table class="media-table" id="media-table">
   <thead>
     <tr>
@@ -32,8 +33,8 @@
       <th class="col-type sortable" data-sort="type">Type</th>
       <th class="col-creator sortable" data-sort="creator">Creator</th>
       <th class="col-year sortable" data-sort="year">Year</th>
-      <th class="col-date sortable" data-sort="started">Started</th>
-      <th class="col-date sortable" data-sort="finished">Finished</th>
+      <th class="col-date col-started sortable" data-sort="started">Started</th>
+      <th class="col-date col-finished sortable" data-sort="finished">Finished</th>
       <th class="col-rating sortable" data-sort="rating">Rating</th>
     </tr>
   </thead>
@@ -67,8 +68,8 @@
       <td class="col-type"><span class="media-type">{{ item.type }}</span></td>
       <td class="col-creator">{{ item.creator | default: "—" }}</td>
       <td class="col-year">{{ item.year | default: "—" }}</td>
-      <td class="col-date">{{ item.started | default: "—" }}</td>
-      <td class="col-date">{{ item.finished | default: "—" }}</td>
+      <td class="col-date col-started">{{ item.started | default: "—" }}</td>
+      <td class="col-date col-finished">{{ item.finished | default: "—" }}</td>
       <td class="col-rating">
         {% if item.rating %}
         <span class="media-stars" title="{{ item.rating }} out of 5">
@@ -90,6 +91,7 @@
     {% endfor %}
   </tbody>
 </table>
+</div>
 
 <p class="media-count"><span id="media-shown">{{ entries.size }}</span> of {{ entries.size }} entries</p>
 

@@ -708,6 +708,9 @@ def main():
 
     entries = load_entries()
     known = {(e.get("title", "").lower(), e.get("type")) for e in entries}
+    # The same work can come back under different titles ("Habsburgs" vs
+    # "Habsburgs: To Rule the World"), so the source URL is the surer identity.
+    known_urls = {e["url"] for e in entries if e.get("url")}
     added = 0
     skipped = []
 
@@ -730,16 +733,21 @@ def main():
             skipped.append(term)
             continue
 
-        # The search may resolve to a fuller name than the term we looked up
-        # ("Disco Elysium" -> "Disco Elysium - The Final Cut"), so re-check
-        # for a duplicate now that the real title is known.
-        if (entry["title"].lower(), entry["type"]) in known:
+        # The search may resolve to a different name than the term we looked up
+        # ("Disco Elysium" -> "Disco Elysium - The Final Cut"), so re-check for
+        # a duplicate now that the real title and source URL are known.
+        duplicate = (entry["title"].lower(), entry["type"]) in known or (
+            entry.get("url") and entry["url"] in known_urls
+        )
+        if duplicate:
             print(f"  already logged as \"{entry['title']}\" - skipping")
             discard_cover(entry.get("cover"))
             continue
 
         entries.append(entry)
         known.add((entry["title"].lower(), entry["type"]))
+        if entry.get("url"):
+            known_urls.add(entry["url"])
         added += 1
         # Save after each entry so a long backfill survives an interruption.
         save_entries(sort_entries(entries))
