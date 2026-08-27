@@ -6,3 +6,7 @@ vendor
 
 # Bookmarks data (synced from Firefox at build time)
 _data/bookmarks.yml
+
+# Import scratch (CSV dumps, etc.)
+imports/
+__pycache__/

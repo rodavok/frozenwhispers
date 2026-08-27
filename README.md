@@ -106,8 +106,13 @@ from you, then you fill in your dates and ratings by editing the YAML in bulk �
 usually faster than answering four prompts per title.
 
 Things already in the log are skipped, so you can keep appending lines to
-`backlog.txt` and rerun the same file. Anything with no match is skipped and
-listed at the end to rerun with an explicit `--type`.
+`backlog.txt` and rerun the same file. Duplicates are caught by source URL as
+well as by title, so the same work still counts as a duplicate when a search
+returns it under a different name (`Habsburgs` vs `Habsburgs: To Rule the
+World`). A genuinely different work with a similar title is still added.
+
+Anything with no match is skipped and listed at the end to rerun with an
+explicit `--type`.
 
 Each entry saves as it completes, so an interrupted batch keeps whatever it got
 through.
@@ -155,6 +160,35 @@ All lookups are free and need no API key:
 | `tv`    | TVMaze                                         | Second call fetches the real `Creator`, not the network |
 | `game`  | Steam store                                    | Prefers the portrait capsule over the wide banner |
 | `music` | iTunes Search                                  | |
+
+## Page layout and styling
+
+| Piece | File |
+|---|---|
+| The page itself | `media.md` |
+| Table markup, filtering, sorting, expand/collapse | `_includes/media-table.html` |
+| Styles | `assets/css/style.css`, under `/* Media page */` |
+| Data | `_data/media.yml` |
+| Cover images | `assets/covers/` |
+
+The table drops columns as the screen narrows, so it always fits without
+pushing the page sideways:
+
+| Width | Columns shown |
+|---|---|
+| Over 768px | All eight |
+| 768px and under | Cover, Title, Type, Finished, Rating (Creator, Year, Started hidden) |
+| 480px and under | Same, with tighter padding and a smaller cover |
+
+Below about 350px — where exactly depends on your longest title — the table
+scrolls horizontally **inside its own box** rather than breaking the page
+layout.
+
+If you add a column, keep it inside `.media-table-wrap` and give it a real
+class name. The responsive rules match on classes like `.col-started`; an
+earlier version used `:first-of-type`, which matches on element type rather
+than class, silently matched nothing, and let the table overflow the page on
+phones.
 
 ## The data file
 

@@ -11,3 +11,643 @@
   cover: /assets/covers/habsburgs-to-rule-the-world.jpg
   url: https://openlibrary.org/works/OL20758556W
   added: '2026-08-27'
+- id: liftoff-fpv-drone-racing
+  title: 'Liftoff: FPV Drone Racing'
+  type: game
+  creator: LuGus Studios
+  year: 2018
+  started: null
+  finished: null
+  rating: 4
+  comment: Allegedly you need hundreds of hours in this game before you even consider buying a real drone.
+    It’s tough, like a big step up from hyperspeed racers
+  cover: /assets/covers/liftoff-fpv-drone-racing.jpg
+  url: https://store.steampowered.com/app/410340
+  platform: PC
+  genre:
+  - Drone Simulation
+  playtime: null
+  added: '2026-08-27'
+- id: wario-land-4
+  title: Wario Land 4
+  type: game
+  creator: Nintendo Research & Development 1
+  year: 2001
+  started: null
+  finished: null
+  rating: null
+  comment: null
+  cover: /assets/covers/wario-land-4.png
+  url: https://en.wikipedia.org/wiki/Wario_Land_4
+  platform: GBA
+  genre:
+  - Platformer
+  playtime: null
+  added: '2026-08-27'
+- id: shin-megami-tensei-digital-devil-saga-1-2
+  title: 'Shin Megami Tensei: Digital Devil Saga 1 & 2'
+  type: game
+  creator: Atlus
+  year: 2004
+  started: null
+  finished: null
+  rating: null
+  comment: null
+  cover: /assets/covers/shin-megami-tensei-digital-devil-saga-1-2.png
+  url: https://en.wikipedia.org/wiki/Shin_Megami_Tensei:_Digital_Devil_Saga
+  platform: PS2
+  genre:
+  - JRPG
+  playtime: null
+  added: '2026-08-27'
+- id: resident-evil-4-remake
+  title: Resident Evil 4 Remake
+  type: game
+  creator: CAPCOM Co., Ltd.
+  year: 2023
+  started: null
+  finished: null
+  rating: null
+  comment: null
+  cover: /assets/covers/resident-evil-4-remake.jpg
+  url: https://store.steampowered.com/app/2050650
+  platform: PC
+  genre: null
+  playtime: null
+  added: '2026-08-27'
+- id: prey
+  title: Prey
+  type: game
+  creator: Arkane Studios
+  year: 2017
+  started: null
+  finished: null
+  rating: 4.5
+  comment: Office building shooter / crafting adventure game. The office building is in space this time
+    though. Game has a theme of moral dilemmas and occasionally references the trolley problem and it’s
+    variants (including the fat man version). Neat upgrade tree, movement options, level design.
+  cover: /assets/covers/prey.jpg
+  url: https://store.steampowered.com/app/480490
+  platform: PC
+  genre:
+  - Metroidvania
+  - Shooter
+  playtime: null
+  added: '2026-08-27'
+- id: alan-wake-ii
+  title: Alan Wake II
+  type: game
+  creator: Remedy Entertainment
+  year: 2023
+  started: null
+  finished: null
+  rating: null
+  comment: null
+  cover: /assets/covers/alan-wake-ii.jpg
+  url: https://en.wikipedia.org/wiki/Alan_Wake_2
+  platform: PC
+  genre: null
+  playtime: null
+  added: '2026-08-27'
+- id: world-of-horror
+  title: World of Horror
+  type: game
+  creator: panstasz
+  year: 2023
+  started: null
+  finished: null
+  rating: null
+  comment: null
+  cover: /assets/covers/world-of-horror.jpg
+  url: https://store.steampowered.com/app/913740
+  platform: PC
+  genre: null
+  playtime: null
+  added: '2026-08-27'
+- id: inscryption
+  title: Inscryption
+  type: game
+  creator: Daniel Mullins Games
+  year: 2021
+  started: null
+  finished: null
+  rating: null
+  comment: null
+  cover: /assets/covers/inscryption.jpg
+  url: https://store.steampowered.com/app/1092790
+  platform: Switch
+  genre:
+  - Card Game
+  - Roguelite
+  playtime: null
+  added: '2026-08-27'
+- id: super-mario-bros-wonder
+  title: Super Mario Bros. Wonder
+  type: game
+  creator: Nintendo Entertainment Planning & Development
+  year: 2023
+  started: null
+  finished: null
+  rating: null
+  comment: null
+  cover: /assets/covers/super-mario-bros-wonder.png
+  url: https://en.wikipedia.org/wiki/Super_Mario_Bros._Wonder
+  platform: Switch
+  genre: null
+  playtime: null
+  added: '2026-08-27'
+- id: super-mario-rpg-remake
+  title: Super Mario RPG Remake
+  type: game
+  creator: ArtePiazza
+  year: 2023
+  started: null
+  finished: null
+  rating: null
+  comment: null
+  cover: null
+  url: https://en.wikipedia.org/wiki/Super_Mario_RPG#Remake
+  platform: Switch
+  genre: null
+  playtime: null
+  added: '2026-08-27'
+- id: pikmin-4
+  title: Pikmin 4
+  type: game
+  creator: Nintendo
+  year: 2023
+  started: null
+  finished: null
+  rating: null
+  comment: null
+  cover: /assets/covers/pikmin-4.jpg
+  url: https://en.wikipedia.org/wiki/Pikmin_4
+  platform: Switch
+  genre: null
+  playtime: null
+  added: '2026-08-27'
+- id: elden-ring-shadow-of-the-erdtree
+  title: 'Elden Ring: Shadow of the Erdtree'
+  type: game
+  creator: FromSoftware, Inc.
+  year: 2024
+  started: null
+  finished: null
+  rating: 4.5
+  comment: Another quality release, but they are getting close to jumping the shark on how hectic the
+    bosses can
+  cover: /assets/covers/elden-ring-shadow-of-the-erdtree.jpg
+  url: https://store.steampowered.com/app/2778580
+  platform: PC
+  genre: null
+  playtime: null
+  added: '2026-08-27'
+- id: armored-core-vi-fires-of-rubicon
+  title: 'Armored Core VI: Fires of Rubicon'
+  type: game
+  creator: FromSoftware, Inc.
+  year: 2023
+  started: null
+  finished: null
+  rating: 4.5
+  comment: null
+  cover: /assets/covers/armored-core-vi-fires-of-rubicon.jpg
+  url: https://store.steampowered.com/app/1888160
+  platform: PC
+  genre:
+  - Action
+  - Mech
+  playtime: null
+  added: '2026-08-27'
+- id: slay-the-spire
+  title: Slay the Spire
+  type: game
+  creator: Mega Crit
+  year: 2019
+  started: null
+  finished: null
+  rating: 4
+  comment: I played the board game first. Each deck has several strategies available and there’s something
+    like 20 difficulty levels? Aesthetics are mid and it’s a little more involved than Balatro so I don’t
+    find myself playing it as much.
+  cover: /assets/covers/slay-the-spire.jpg
+  url: https://store.steampowered.com/app/646570
+  platform: Mobile
+  genre:
+  - Card Game
+  - Roguelite
+  playtime: 50
+  added: '2026-08-27'
+- id: final-fantasy-vi
+  title: Final Fantasy VI
+  type: game
+  creator: Square Enix
+  year: 1994
+  started: '2021-01'
+  finished: '2026-06'
+  rating: 5
+  comment: Mostly to kill time on flights. It’s funny how similar and how different FF is from DQ- The
+    story has had it’s foot on the gas from the very start and exploration has been very light. There
+    seems to be a ton of party members with different abilities, but the game has been really easy so
+    far so the mechanics are mostly just for fun. Some gorgeous spritework on the backgrounds and environments,
+    but the character sprites (not portraits) are samey and weirdly top-heavy, and the monsters haven’t
+    been very memorable. Not having been a fan of the “steal” mechanic in FF games, I got a sensible chuckle
+    after stealing the clothes off some poor guy during a stealth section.
+  cover: /assets/covers/final-fantasy-vi.jpg
+  url: https://store.steampowered.com/app/1173820
+  platform: SNES
+  genre:
+  - JRPG
+  - Retro
+  playtime: null
+  added: '2026-08-27'
+- id: pathologic-3
+  title: Pathologic 3
+  type: game
+  creator: Ice-Pick Lodge
+  year: 2026
+  started: '2026-01'
+  finished: '2026-06'
+  rating: 5
+  comment: null
+  cover: /assets/covers/pathologic-3.jpg
+  url: https://store.steampowered.com/app/3199650
+  platform: PC
+  genre:
+  - Horror
+  - Narrative
+  - Simulation
+  playtime: null
+  added: '2026-08-27'
+- id: dragon-quest-vii-reimagined
+  title: Dragon Quest VII Reimagined
+  type: game
+  creator: Square Enix, HEXADRIVE Inc.
+  year: 2026
+  started: '2026-02'
+  finished: '2026-04'
+  rating: 4.5
+  comment: null
+  cover: /assets/covers/dragon-quest-vii-reimagined.jpg
+  url: https://store.steampowered.com/app/2499860
+  platform: PC
+  genre:
+  - JRPG
+  playtime: null
+  added: '2026-08-27'
+- id: tingus-goose
+  title: Tingus Goose
+  type: game
+  creator: SweatyChair
+  year: 2025
+  started: '2026-01'
+  finished: null
+  rating: null
+  comment: null
+  cover: /assets/covers/tingus-goose.jpg
+  url: https://store.steampowered.com/app/3629780
+  platform: PC
+  genre:
+  - Idle
+  playtime: null
+  added: '2026-08-27'
+- id: mole-mania
+  title: Mole Mania
+  type: game
+  creator: Nintendo Entertainment Analysis & Development
+  year: 1996
+  started: '2025-01'
+  finished: '2025-12'
+  rating: 5
+  comment: Hidden gem produced by Miyamoto. Not surprising so many people missed this - it came out too
+    late in the Gameboy’s lifespan and the mole is really not the most charismatic animal, but this is
+    a really neat game. It’s an ambitious expansion on the well-worn Sokoban formula. There’s an emphasis
+    on pushing, but also rolling, and suplexing a ball towards the goal, with enemies, pipes, conveyor
+    belts. Has a handful of bosses, all of which are completely unique. Bonus points for the level where
+    the enemies are all nearly nude, tanned buff beach dudes.
+  cover: /assets/covers/mole-mania.png
+  url: https://en.wikipedia.org/wiki/Mole_Mania
+  platform: GBC
+  genre:
+  - Puzzle
+  - Sokoban
+  playtime: null
+  added: '2026-08-27'
+- id: elden-ring-nightreign
+  title: 'Elden Ring: Nightreign'
+  type: game
+  creator: FromSoftware, Inc.
+  year: 2025
+  started: '2025-12'
+  finished: null
+  rating: 4
+  comment: null
+  cover: /assets/covers/elden-ring-nightreign.jpg
+  url: https://store.steampowered.com/app/2622380
+  platform: PC
+  genre:
+  - Souls-like
+  playtime: null
+  added: '2026-08-27'
+- id: hollow-knight-silksong
+  title: 'Hollow Knight: Silksong'
+  type: game
+  creator: Team Cherry
+  year: 2025
+  started: '2025-09'
+  finished: '2025-11'
+  rating: 4.5
+  comment: Gorgeous, huge game with a few options that expand on the previous game, but a little rushed
+    in the end. And HARD! Well worth the wait, but like huge open world games I can only handle one of
+    these a year
+  cover: /assets/covers/hollow-knight-silksong.jpg
+  url: https://store.steampowered.com/app/1030300
+  platform: PC
+  genre:
+  - Metroidvania
+  playtime: 100
+  added: '2026-08-27'
+- id: hades-ii
+  title: Hades II
+  type: game
+  creator: Supergiant Games
+  year: 2025
+  started: '2025-11'
+  finished: null
+  rating: 4
+  comment: Less compelling than the first game, and I’m starting to get a little bored with these incremental
+    progress rougelite type games, but the dynamic narrative that unfolds over successive runs really
+    sells this just like it did in the first game. “Why do these women look pretty and ugly at the same
+    time” - Swati
+  cover: /assets/covers/hades-ii.jpg
+  url: https://store.steampowered.com/app/1145350
+  platform: PC
+  genre:
+  - Bullet Hell
+  - Narrative
+  - Roguelite
+  playtime: null
+  added: '2026-08-27'
+- id: crow-country
+  title: Crow Country
+  type: game
+  creator: SFB Games
+  year: 2024
+  started: '2025-10'
+  finished: '2025-11'
+  rating: 5
+  comment: Perfect length PSXish RE-like with a boner for those dumb fetch quest / puzzles these games
+    tend to have you complete while getting chased by monsters. The short length and additional completion
+    speed will have me coming back later. I need more games like this.
+  cover: /assets/covers/crow-country.jpg
+  url: https://store.steampowered.com/app/1996010
+  platform: PC
+  genre:
+  - Horror
+  - Low-Poly
+  playtime: 20
+  added: '2026-08-27'
+- id: felvidek
+  title: Felvidek
+  type: game
+  creator: Jozef Pavelka, Vlado Ganaj
+  year: 2024
+  started: '2025-11'
+  finished: null
+  rating: 2.5
+  comment: Riding on the coattails of Hylics and Disco Elysium, I figured this was worth it for the digitized
+    live-actionish animations. Unfortunately it’s a boring RPG-Maker game and maybe even a little chuddy
+    but I haven’t played enough to understand the dev’s opinions on the religion they are portraying
+  cover: /assets/covers/felvidek.jpg
+  url: https://store.steampowered.com/app/2299900
+  platform: PC
+  genre:
+  - JRPG
+  playtime: null
+  added: '2026-08-27'
+- id: kirbys-dream-land-2
+  title: Kirby’s Dream Land 2
+  type: game
+  creator: HAL Laboratory
+  year: 1995
+  started: '2025-07'
+  finished: null
+  rating: 2.5
+  comment: Shinichi Shimomura’s directorial debut for Kirby games. The first of the KDL2/3/64 ‘trilogy’
+    and has the hallmarks of these three compared to other kirby games - levels are short and uneventful,
+    abilities can be combined with partners, and good character design. I’m glad it’s cute, short and
+    painless, otherwise it’s a pretty weak platformer.
+  cover: /assets/covers/kirbys-dream-land-2.png
+  url: https://en.wikipedia.org/wiki/Kirby's_Dream_Land_2
+  platform: GB
+  genre:
+  - Platformer
+  playtime: null
+  added: '2026-08-27'
+- id: pokemon-picross
+  title: Pokemon Picross
+  type: game
+  creator: Nintendo
+  year: null
+  started: '2025-01'
+  finished: null
+  rating: 2
+  comment: Product of the 2020 Gigaleak 3. I can see why they didn’t release this. The puzzles barely
+    match the Pokemon they are trying to depict, leaving no room for intuition in solving the puzzles
+  cover: null
+  url: null
+  platform: GBC (unreleased version)
+  genre:
+  - Puzzle
+  playtime: null
+  added: '2026-08-27'
+- id: bloodborne
+  title: Bloodborne
+  type: game
+  creator: FromSoftware, Japan Studio
+  year: 2015
+  started: '2025-01'
+  finished: null
+  rating: 5
+  comment: It finally fucking happened. Things are shitty but the emulation scene continues to provide
+    the bread and circus that makes life worth living. Silky smooth 60fps and crashes after 3 hours to
+    prevent me from wasting too much of my life
+  cover: /assets/covers/bloodborne.jpg
+  url: https://en.wikipedia.org/wiki/Bloodborne
+  platform: PC (ShadPS4)
+  genre:
+  - Action
+  - RPG
+  - Souls-like
+  playtime: null
+  added: '2026-08-27'
+- id: dragon-quest-i-ii-hd-remake
+  title: Dragon Quest I & II HD Remake
+  type: game
+  creator: Square Enix, ARTDINK
+  year: 2025
+  started: '2025-12'
+  finished: '2026-01'
+  rating: 5
+  comment: null
+  cover: /assets/covers/dragon-quest-i-ii-hd-remake.jpg
+  url: https://store.steampowered.com/app/2893570
+  platform: Switch
+  genre:
+  - JRPG
+  playtime: null
+  added: '2026-08-27'
+- id: ufo50
+  title: UFO50
+  type: game
+  creator: Mossmouth
+  year: 2024
+  started: '2024-11'
+  finished: null
+  rating: 5
+  comment: 2024 GOTY. This was a treat, a flash in the pan, unlikely we’ll get something this special
+    for some time
+  cover: /assets/covers/ufo50.jpg
+  url: https://store.steampowered.com/app/1147860
+  platform: PC
+  genre:
+  - Everything
+  - Retro
+  playtime: 110
+  added: '2026-08-27'
+- id: star-control-ii-the-ur-quan-masters
+  title: 'Star Control II: The Ur-Quan Masters'
+  type: game
+  creator: Toys for Bob
+  year: 1992
+  started: '2024-02'
+  finished: '2024-05'
+  rating: 5
+  comment: This came up in the topic of “Good Space RPG”. You’ve got ~5 years to explore the galaxy and
+    make alliances with 20ish alien races before your alien overlords return to wipe you out. Really convincing
+    voice acting, a nuanced bad guy race, and a dynamic and changing game world make this game surprisingly
+    engaging despite being an early 90s computer RPG. Highly reccomend.
+  cover: /assets/covers/star-control-ii-the-ur-quan-masters.jpg
+  url: https://en.wikipedia.org/wiki/Star_Control_II
+  platform: PC
+  genre:
+  - Simulation
+  - Space
+  - WRPG
+  playtime: 20
+  added: '2026-08-27'
+- id: balatro
+  title: Balatro
+  type: game
+  creator: LocalThunk
+  year: 2024
+  started: '2024-04'
+  finished: null
+  rating: 3
+  comment: This is crack. It’s addicting, fun, but also kinda bad? Back in the day we were playing Spider
+    Solitare. It feels good to win, but sometimes it’s up to luck whether or not winning is even possible.
+    Especially on the higher difficulties I start to question if winning happens due to skill or simply
+    time investment. The single track dynamic soundtrack is chill and the rumble effect (Switch Version)
+    makes racking up a high score feel like you’ve just made a sick play on the pinball machine. Great
+    presentation, but at the end of the day it’s just video poker.
+  cover: /assets/covers/balatro.jpg
+  url: https://store.steampowered.com/app/2379780
+  platform: Mobile
+  genre:
+  - Card Game
+  - Roguelite
+  playtime: 35
+  added: '2026-08-27'
+- id: granblue-fantasy-versus-rising
+  title: Granblue Fantasy Versus Rising
+  type: game
+  creator: Cygames, Inc., Arc System Works
+  year: 2023
+  started: '2023-12'
+  finished: '2024-03'
+  rating: 4.5
+  comment: Good game with a low execution barrier and good additions to the previous version. I’d have
+    played this more if there weren’t a million other fighting games to play.
+  cover: /assets/covers/granblue-fantasy-versus-rising.jpg
+  url: https://store.steampowered.com/app/2157560
+  platform: PC
+  genre:
+  - Anime
+  - Fighting
+  playtime: 50
+  added: '2026-08-27'
+- id: street-fighter-6
+  title: Street Fighter 6
+  type: game
+  creator: CAPCOM Co., Ltd.
+  year: 2023
+  started: '2023-06'
+  finished: '2023-08'
+  rating: 4.5
+  comment: 'Most played game (On Steam), but I only played it for 3 months. Haven’t touched it since.
+    Definitely my favorite Street Fighter. Unsure how Swati will feel about Dhalsim.
+
+
+    Literally haven’t touched this since it came out why did I play it so much in the first place?'
+  cover: /assets/covers/street-fighter-6.jpg
+  url: https://store.steampowered.com/app/1364780
+  platform: PC
+  genre:
+  - Fighting
+  playtime: 140
+  added: '2026-08-27'
+- id: ace-combat-7-skies-unknown
+  title: 'Ace Combat 7: Skies Unknown'
+  type: game
+  creator: Bandai Namco Studios Inc.
+  year: 2019
+  started: '2023-02'
+  finished: '2023-03'
+  rating: 5
+  comment: Replay. Drone Army continues to fight after their makers have surrendered. Both drone warfare
+    and AI have exploded since I last played this game. Excellent mission variety.
+  cover: /assets/covers/ace-combat-7-skies-unknown.jpg
+  url: https://store.steampowered.com/app/502500
+  platform: PS4/PC
+  genre:
+  - Air Combat Simulation
+  playtime: 18
+  added: '2026-08-27'
+- id: pizza-tower
+  title: Pizza Tower
+  type: game
+  creator: Tour De Pizza
+  year: 2023
+  started: '2023-02'
+  finished: null
+  rating: 3.5
+  comment: Best Sonic game I’ve ever played (I’ve never played a Sonic game for more than an hour). Dropped
+    this to play Wario Land 4.
+  cover: /assets/covers/pizza-tower.jpg
+  url: https://store.steampowered.com/app/2231450
+  platform: PC
+  genre:
+  - Platformer
+  playtime: 3
+  added: '2026-08-27'
+  finished_note: Didn’t Finish
+- id: control
+  title: Control
+  type: game
+  creator: Remedy Entertainment
+  year: 2019
+  started: '2023-01'
+  finished: '2023-02'
+  rating: 4.5
+  comment: Tight shooter with a variety of abilities with cool bureau-arcane setting. Reminds me of FEAR
+    and many other office building shooter games, except the endless labrynthine building is actually
+    explained by the game’s story. Despite taking place in an interdimensional office building housing
+    tons of supernatural stuff, enemies are almost entirely possessed humans, which is kinda lame
+  cover: /assets/covers/control.jpg
+  url: https://store.steampowered.com/app/870780
+  platform: PC
+  genre:
+  - Shooter
+  - Third Person
+  playtime: null
+  added: '2026-08-27'
