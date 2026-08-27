@@ -1,0 +1,231 @@
+{% assign entries = site.data.media %}
+{% comment %}
+  Comments are private unless media_show_comments is true in _config.yml.
+  When it is false, comment text is never emitted into the HTML - not merely
+  hidden with CSS - so it cannot be read from the published page source.
+{% endcomment %}
+{% assign show_comments = site.media_show_comments %}
+
+{% if entries.size == 0 %}
+
+<p class="media-empty">Nothing logged yet. Add the first entry with
+<code>./add_media.py "Some Title"</code>.</p>
+
+{% else %}
+
+<div class="media-controls">
+  <input type="search" id="media-search" class="media-search" placeholder="Filter by title or creator…" aria-label="Filter media">
+  <div class="media-filters" role="group" aria-label="Filter by type">
+    <button type="button" class="media-filter is-active" data-type="all">All</button>
+    {% assign types = entries | map: "type" | uniq | sort %}
+    {% for type in types %}
+    <button type="button" class="media-filter" data-type="{{ type }}">{% if type == 'tv' %}TV{% else %}{{ type }}{% endif %}</button>
+    {% endfor %}
+  </div>
+</div>
+
+<table class="media-table" id="media-table">
+  <thead>
+    <tr>
+      <th class="col-cover" aria-label="Cover"></th>
+      <th class="col-title sortable" data-sort="title">Title</th>
+      <th class="col-type sortable" data-sort="type">Type</th>
+      <th class="col-creator sortable" data-sort="creator">Creator</th>
+      <th class="col-year sortable" data-sort="year">Year</th>
+      <th class="col-date sortable" data-sort="started">Started</th>
+      <th class="col-date sortable" data-sort="finished">Finished</th>
+      <th class="col-rating sortable" data-sort="rating">Rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in entries %}
+    {% if show_comments and item.comment %}{% assign row_comment = item.comment %}{% else %}{% assign row_comment = nil %}{% endif %}
+    <tr class="media-row{% if row_comment %} has-comment{% endif %}"
+        data-title="{{ item.title | downcase | escape }}"
+        data-type="{{ item.type }}"
+        data-creator="{{ item.creator | default: '' | downcase | escape }}"
+        data-year="{{ item.year | default: 0 }}"
+        data-started="{{ item.started | default: '' }}"
+        data-finished="{{ item.finished | default: '' }}"
+        data-rating="{{ item.rating | default: -1 }}"
+        {% if row_comment %}tabindex="0" role="button" aria-expanded="false"{% endif %}>
+      <td class="col-cover">
+        {% if item.cover %}
+        <img src="{{ item.cover | relative_url }}" alt="" loading="lazy" class="media-cover">
+        {% else %}
+        <span class="media-cover media-cover-blank" aria-hidden="true"></span>
+        {% endif %}
+      </td>
+      <td class="col-title">
+        {% if item.url %}
+        <a href="{{ item.url }}" rel="noopener">{{ item.title }}</a>
+        {% else %}
+        {{ item.title }}
+        {% endif %}
+        {% if row_comment %}<span class="media-note" aria-hidden="true">▸</span>{% endif %}
+      </td>
+      <td class="col-type"><span class="media-type">{{ item.type }}</span></td>
+      <td class="col-creator">{{ item.creator | default: "—" }}</td>
+      <td class="col-year">{{ item.year | default: "—" }}</td>
+      <td class="col-date">{{ item.started | default: "—" }}</td>
+      <td class="col-date">{{ item.finished | default: "—" }}</td>
+      <td class="col-rating">
+        {% if item.rating %}
+        <span class="media-stars" title="{{ item.rating }} out of 5">
+          {%- for i in (1..5) -%}
+            {%- if i <= item.rating -%}★{%- else -%}<span class="star-empty">★</span>{%- endif -%}
+          {%- endfor -%}
+        </span>
+        {% else %}—{% endif %}
+      </td>
+    </tr>
+    {% if row_comment %}
+    <tr class="media-comment-row" hidden>
+      <td class="col-cover"></td>
+      <td colspan="7">
+        <div class="media-comment">{{ row_comment | newline_to_br }}</div>
+      </td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+  </tbody>
+</table>
+
+<p class="media-count"><span id="media-shown">{{ entries.size }}</span> of {{ entries.size }} entries</p>
+
+<script>
+(function() {
+  var table = document.getElementById('media-table');
+  if (!table) return;
+
+  var tbody = table.querySelector('tbody');
+  var search = document.getElementById('media-search');
+  var shownCount = document.getElementById('media-shown');
+  var activeType = 'all';
+
+  /* Rows come in pairs: the entry row, optionally followed by its comment row. */
+  function pairs() {
+    var out = [];
+    Array.prototype.forEach.call(tbody.children, function(row) {
+      if (row.classList.contains('media-row')) {
+        out.push({ row: row, comment: null });
+      } else if (row.classList.contains('media-comment-row') && out.length) {
+        out[out.length - 1].comment = row;
+      }
+    });
+    return out;
+  }
+
+  function toggle(pair) {
+    if (!pair.comment) return;
+    var open = !pair.comment.hidden;
+    pair.comment.hidden = open;
+    pair.row.classList.toggle('is-open', !open);
+    pair.row.setAttribute('aria-expanded', String(!open));
+  }
+
+  tbody.addEventListener('click', function(e) {
+    if (e.target.closest('a')) return;   /* let source links through */
+    var row = e.target.closest('.media-row');
+    if (!row) return;
+    pairs().forEach(function(p) { if (p.row === row) toggle(p); });
+  });
+
+  tbody.addEventListener('keydown', function(e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var row = e.target.closest('.media-row');
+    if (!row) return;
+    e.preventDefault();
+    pairs().forEach(function(p) { if (p.row === row) toggle(p); });
+  });
+
+  function applyFilters() {
+    var term = search.value.trim().toLowerCase();
+    var shown = 0;
+
+    pairs().forEach(function(pair) {
+      var d = pair.row.dataset;
+      var matchesType = activeType === 'all' || d.type === activeType;
+      var matchesTerm = !term ||
+        d.title.indexOf(term) !== -1 ||
+        d.creator.indexOf(term) !== -1;
+      var visible = matchesType && matchesTerm;
+
+      pair.row.hidden = !visible;
+      if (pair.comment) {
+        /* Collapse hidden rows so they don't reappear expanded. */
+        if (!visible) {
+          pair.comment.hidden = true;
+          pair.row.classList.remove('is-open');
+          pair.row.setAttribute('aria-expanded', 'false');
+        }
+      }
+      if (visible) shown++;
+    });
+
+    shownCount.textContent = shown;
+  }
+
+  search.addEventListener('input', applyFilters);
+
+  Array.prototype.forEach.call(document.querySelectorAll('.media-filter'), function(button) {
+    button.addEventListener('click', function() {
+      activeType = button.dataset.type;
+      document.querySelectorAll('.media-filter').forEach(function(b) {
+        b.classList.toggle('is-active', b === button);
+      });
+      applyFilters();
+    });
+  });
+
+  var sortKey = null;
+  var sortAsc = true;
+
+  /* Unrated entries carry -1 and unknown years 0; both mean "no value",
+     as distinct from a real rating of 0. */
+  function isMissing(row, key) {
+    var raw = row.dataset[key];
+    if (key === 'rating') return Number(raw) < 0;
+    if (key === 'year') return Number(raw) === 0;
+    return !raw;
+  }
+
+  function sortValue(row, key) {
+    var raw = row.dataset[key];
+    if (key === 'year' || key === 'rating') return Number(raw);
+    return raw || '';
+  }
+
+  Array.prototype.forEach.call(table.querySelectorAll('.sortable'), function(header) {
+    header.addEventListener('click', function() {
+      var key = header.dataset.sort;
+      sortAsc = sortKey === key ? !sortAsc : true;
+      sortKey = key;
+
+      var sorted = pairs().sort(function(a, b) {
+        var av = sortValue(a.row, key);
+        var bv = sortValue(b.row, key);
+        /* Missing values sort last regardless of direction. */
+        var aMissing = isMissing(a.row, key);
+        var bMissing = isMissing(b.row, key);
+        if (aMissing !== bMissing) return aMissing ? 1 : -1;
+        if (aMissing && bMissing) return 0;
+        if (av === bv) return 0;
+        return (av > bv ? 1 : -1) * (sortAsc ? 1 : -1);
+      });
+
+      sorted.forEach(function(pair) {
+        tbody.appendChild(pair.row);
+        if (pair.comment) tbody.appendChild(pair.comment);
+      });
+
+      table.querySelectorAll('.sortable').forEach(function(h) {
+        h.classList.remove('sort-asc', 'sort-desc');
+      });
+      header.classList.add(sortAsc ? 'sort-asc' : 'sort-desc');
+    });
+  });
+})();
+</script>
+
+{% endif %}

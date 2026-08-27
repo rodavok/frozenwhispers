@@ -24,6 +24,10 @@ description: >-
 baseurl: ""
 url: "https://rodavok.github.io"
 
+# Media page: when false, comments stay in _data/media.yml as private notes
+# and are not written into the built HTML at all. Flip to true to publish them.
+media_show_comments: false
+
 # Build settings
 theme: minima
 plugins:
@@ -47,5 +51,6 @@ exclude:
   - vendor/
   - deploy.sh
   - sync_bookmarks.py
+  - add_media.py
   - README.md
   - docs/
