@@ -39,7 +39,15 @@
   </p>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% comment %}
+  Pinned with an integrity hash: any script on this site can read the GitHub
+  token /media/add/ keeps in localStorage, so the browser must refuse a
+  CDN file that has been changed. Bumping the version means a new hash:
+  curl -sL <url> | openssl dgst -sha384 -binary | base64
+{% endcomment %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"
+        integrity="sha384-jb8JQMbMoBUzgWatfe6COACi2ljcDdZQ2OxczGA3bGNeWe+6DChMTBJemed7ZnvJ"
+        crossorigin="anonymous"></script>
 <script>
 (function() {
   const topicData = {{ site.data.claude_energy.by_topic | jsonify }};

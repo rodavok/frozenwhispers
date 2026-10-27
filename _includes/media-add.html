@@ -1,0 +1,145 @@
+{% comment %}
+  Add an entry to the media log from the site itself. The page looks titles up
+  in the browser, then commits the entry and its cover to the repo through the
+  GitHub API; the push triggers the Pages workflow, which rebuilds the site.
+  All of the behaviour lives in assets/js/media-add.js.
+{% endcomment %}
+<div id="media-add" class="media-add"
+     data-repo="{{ site.media_repo }}"
+     data-branch="{{ site.media_branch | default: 'main' }}">
+
+  <p class="media-add-back"><a href="{{ '/media/' | relative_url }}">← Back to the media log</a></p>
+
+  <noscript><p class="media-add-error">This page needs JavaScript.</p></noscript>
+
+  <section id="add-token-panel" class="media-add-panel" hidden>
+    <h2>Connect to GitHub</h2>
+    <p>Saving commits the entry straight to the
+      <a href="https://github.com/{{ site.media_repo }}" rel="noopener">{{ site.media_repo }}</a>
+      repo, so this browser needs a GitHub token. It is kept in this browser only.</p>
+    <ol class="media-add-steps">
+      <li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → new fine-grained token</a>.</li>
+      <li>Under <b>Repository access</b>, pick <b>Only select repositories</b> and choose <code>{{ site.media_repo | split: '/' | last }}</code>.</li>
+      <li>Under <b>Permissions</b>, set <b>Contents</b> to <b>Read and write</b>.</li>
+      <li>Generate it and paste it here.</li>
+    </ol>
+    <form id="add-token-form" class="media-add-row">
+      <input type="password" id="add-token" class="media-search" placeholder="github_pat_…"
+             autocomplete="off" spellcheck="false" aria-label="GitHub token" required>
+      <button type="submit" class="media-add-button">Save token</button>
+    </form>
+    <p id="add-token-error" class="media-add-error" hidden></p>
+  </section>
+
+  <section id="add-main" hidden>
+    <form id="add-search-form" class="media-add-search">
+      <div class="media-filters" role="group" aria-label="Type">
+        <button type="button" class="media-filter" data-type="game">Game</button>
+        <button type="button" class="media-filter" data-type="book">Book</button>
+        <button type="button" class="media-filter" data-type="film">Film</button>
+        <button type="button" class="media-filter" data-type="tv">TV</button>
+        <button type="button" class="media-filter" data-type="music">Music</button>
+      </div>
+      <div class="media-add-row">
+        <input type="search" id="add-term" class="media-search" placeholder="Search for a title…"
+               aria-label="Title to search for" required>
+        <button type="submit" class="media-add-button">Search</button>
+      </div>
+    </form>
+
+    <p id="add-search-status" class="media-add-status" role="status"></p>
+    <ul id="add-results" class="media-add-results"></ul>
+    <p class="media-add-manual" id="add-manual-wrap" hidden>
+      <button type="button" id="add-manual" class="media-add-link">None of these, enter it by hand</button>
+    </p>
+
+    <form id="add-entry" class="media-add-entry" hidden novalidate>
+      <div class="media-add-cover-col">
+        <div class="media-add-cover-frame">
+          <img id="add-cover-img" alt="" hidden>
+          <span id="add-cover-blank" class="media-cover-blank media-add-cover-blank">No cover</span>
+        </div>
+        <p id="add-cover-status" class="media-add-hint"></p>
+        <button type="button" id="add-cover-toggle" class="media-add-link">Change cover</button>
+        <div id="add-cover-change" class="media-add-cover-change" hidden>
+          <input type="url" id="add-cover-url" class="media-search" placeholder="Image URL" aria-label="Cover image URL">
+          <button type="button" id="add-cover-fetch" class="media-add-button media-add-button-quiet">Use URL</button>
+          <label class="media-add-file">or upload a file
+            <input type="file" id="add-cover-file" accept="image/*">
+          </label>
+          <button type="button" id="add-cover-clear" class="media-add-link">No cover</button>
+        </div>
+      </div>
+
+      <div class="media-add-fields">
+        <label class="media-add-field media-add-wide">Title
+          <input type="text" id="add-title" class="media-search" required>
+        </label>
+        <label class="media-add-field media-add-wide">Creator
+          <input type="text" id="add-creator" class="media-search" placeholder="Author, director, developer, or artist">
+        </label>
+        <label class="media-add-field">Type
+          <select id="add-type" class="media-search">
+            <option value="game">Game</option>
+            <option value="book">Book</option>
+            <option value="film">Film</option>
+            <option value="tv">TV</option>
+            <option value="music">Music</option>
+          </select>
+        </label>
+        <label class="media-add-field">Year
+          <input type="text" id="add-year" class="media-search" inputmode="numeric" placeholder="2025">
+        </label>
+        <label class="media-add-field">Rating
+          <input type="number" id="add-rating" class="media-search" min="0" max="5" step="0.5" placeholder="0–5">
+        </label>
+        <label class="media-add-field media-add-half">Started
+          <span class="media-add-date">
+            <input type="text" id="add-started" class="media-search" placeholder="YYYY-MM-DD">
+            <button type="button" class="media-add-link" data-today="add-started">Today</button>
+          </span>
+        </label>
+        <label class="media-add-field media-add-half">Finished
+          <span class="media-add-date">
+            <input type="text" id="add-finished" class="media-search" placeholder="YYYY-MM-DD">
+            <button type="button" class="media-add-link" data-today="add-finished">Today</button>
+          </span>
+        </label>
+        <label class="media-add-field media-add-wide">Comment
+          <textarea id="add-comment" class="media-search" rows="4"></textarea>
+          <span class="media-add-hint">The site hides comments, but they are saved in the public repo, where anyone can read them.</span>
+        </label>
+        <label class="media-add-field media-add-wide">Link
+          <input type="url" id="add-url" class="media-search" placeholder="https://…">
+        </label>
+        <p class="media-add-hint media-add-wide">Dates take YYYY-MM-DD, YYYY-MM, or YYYY. Leave anything blank to skip it.</p>
+
+        <p id="add-entry-error" class="media-add-error media-add-wide" hidden></p>
+        <div class="media-add-actions media-add-wide">
+          <button type="submit" id="add-save" class="media-add-button">Save to log</button>
+          <button type="button" id="add-cancel" class="media-add-link">Back to results</button>
+        </div>
+      </div>
+    </form>
+
+    <section id="add-done" class="media-add-panel" hidden>
+      <p id="add-done-message"></p>
+      <p><button type="button" id="add-another" class="media-add-button">Add another</button></p>
+    </section>
+
+    <p class="media-add-account">
+      Saving to <code>{{ site.media_repo }}</code> ·
+      <button type="button" id="add-forget" class="media-add-link">Forget token</button>
+    </p>
+  </section>
+</div>
+
+{% comment %}
+  The integrity hash makes the browser refuse a tampered copy, which matters
+  here: this page holds the GitHub token. New version, new hash:
+  curl -sL <url> | openssl dgst -sha384 -binary | base64
+{% endcomment %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"
+        integrity="sha384-+pxiN6T7yvpryuJmE1gM9PX7yQit15auDb+ZwwvJOd/4be2Cie5/IuVXgQb/S9du"
+        crossorigin="anonymous"></script>
+<script src="{{ '/assets/js/media-add.js' | relative_url }}"></script>

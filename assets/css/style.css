@@ -443,6 +443,383 @@ tr:hover {
   color: #555;
 }
 
+/* Only shown in a browser that has saved a GitHub token on /media/add/. */
+.media-add-entry-link {
+  margin: -0.5rem 0 1rem;
+  font-size: 0.85rem;
+  text-align: right;
+}
+
+/* Media: add entry page (/media/add/) */
+.media-add {
+  color-scheme: dark;
+}
+
+/* Several of these set display, which would otherwise beat [hidden]. */
+.media-add [hidden] {
+  display: none !important;
+}
+
+.media-add-back {
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.media-add-panel {
+  padding: 20px;
+  margin-bottom: 1.5rem;
+  background: #0c0c0c;
+  border: 1px solid #1f1f1f;
+  border-radius: 6px;
+}
+
+.media-add-panel h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.media-add-panel p:last-child {
+  margin-bottom: 0;
+}
+
+.media-add-steps {
+  margin: 0 0 1.2rem 1.4rem;
+  font-size: 0.9rem;
+  color: #a0a0a0;
+}
+
+.media-add-steps li {
+  margin-bottom: 0.3rem;
+}
+
+.media-add-search {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+
+.media-add-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.media-add-row .media-search {
+  flex: 1 1 220px;
+}
+
+.media-add-button {
+  padding: 8px 16px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: #e8e8e8;
+  background: #16222a;
+  border: 1px solid #3a5f75;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.media-add-button:hover {
+  background: #1d2f3a;
+}
+
+.media-add-button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.media-add-button-quiet {
+  color: #999;
+  background: #111;
+  border-color: #262626;
+}
+
+.media-add-link {
+  padding: 0;
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: #7ab8e0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.media-add-link:hover {
+  color: #a8d4f0;
+  text-decoration: underline;
+}
+
+.media-add-status {
+  min-height: 1.4em;
+  margin-bottom: 0.6rem;
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.media-add-error {
+  font-size: 0.85rem;
+  color: #e08a7a;
+}
+
+.media-add-hint {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: #666;
+}
+
+.media-add-results {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 1rem;
+  list-style: none;
+}
+
+.media-add-result {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 8px 10px;
+  font-family: inherit;
+  text-align: left;
+  color: inherit;
+  background: #0e0e0e;
+  border: 1px solid #1f1f1f;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.media-add-result:hover,
+.media-add-result:focus-visible {
+  outline: none;
+  border-color: #3a5f75;
+  background: #121a20;
+}
+
+.media-add-result .media-cover {
+  flex: none;
+}
+
+.media-add-result-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.media-add-result-title {
+  font-size: 0.95rem;
+  line-height: 1.35;
+  color: #e0e0e0;
+}
+
+.media-add-result-meta {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: #777;
+  overflow-wrap: anywhere;
+}
+
+.media-add-badge {
+  flex: none;
+  padding: 2px 6px;
+  font-size: 0.65rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #c9a227;
+  border: 1px solid #4a3d12;
+  border-radius: 3px;
+}
+
+.media-add-manual {
+  margin-bottom: 1.5rem;
+}
+
+.media-add-entry {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: 24px;
+  margin: 1rem 0 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #1f1f1f;
+  scroll-margin-top: 20px;
+}
+
+.media-add-cover-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.media-add-cover-frame {
+  width: 160px;
+  height: 228px;
+  overflow: hidden;
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 4px;
+}
+
+.media-add-cover-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.media-add-cover-blank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 0.75rem;
+  color: #555;
+}
+
+.media-add-cover-change {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  width: 100%;
+}
+
+.media-add-cover-change .media-search {
+  flex: none;
+  width: 100%;
+}
+
+.media-add-file {
+  font-size: 0.75rem;
+  color: #777;
+}
+
+.media-add-file input {
+  display: block;
+  max-width: 100%;
+  margin-top: 4px;
+  font-size: 0.75rem;
+  color: #999;
+}
+
+/* Six columns so Type/Year/Rating can share a row in thirds and
+   Started/Finished in halves. */
+.media-add-fields {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 14px 16px;
+  align-content: start;
+}
+
+.media-add-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  grid-column: span 2;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #7f7f7f;
+}
+
+.media-add-half {
+  grid-column: span 3;
+}
+
+.media-add-wide {
+  grid-column: 1 / -1;
+}
+
+.media-add-field .media-search,
+.media-add-field .media-add-hint,
+.media-add-field .media-add-link {
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* .media-search grows along its flex axis, which in these columns is height. */
+.media-add-field .media-search {
+  flex: none;
+  width: 100%;
+}
+
+.media-add-field textarea.media-search {
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.media-add-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.media-add-date .media-search {
+  flex: 1;
+  min-width: 0;
+}
+
+.media-add-date .media-add-link {
+  font-size: 0.75rem;
+}
+
+.media-add-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.media-add-account {
+  margin-top: 2rem;
+  font-size: 0.75rem;
+  color: #555;
+}
+
+.media-add-account .media-add-link {
+  font-size: 0.75rem;
+}
+
+@media (max-width: 600px) {
+  .media-add-entry {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .media-add-cover-col {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .media-add-cover-frame {
+    width: 100px;
+    height: 142px;
+  }
+
+  .media-add-cover-change {
+    flex: 1 1 100%;
+  }
+
+  .media-add-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .media-add-field {
+    grid-column: span 1;
+  }
+
+  /* Dates need the room for their Today buttons. */
+  .media-add-half,
+  .media-add-wide {
+    grid-column: 1 / -1;
+  }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .site-container {

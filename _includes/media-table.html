@@ -6,6 +6,15 @@
 {% endcomment %}
 {% assign show_comments = site.media_show_comments %}
 
+<p class="media-add-entry-link" id="media-add-link" hidden><a href="{{ '/media/add/' | relative_url }}">+ Add entry</a></p>
+<script>
+  /* Visitors never see the link: only a browser that has saved a GitHub
+     token on /media/add/ shows it. */
+  try {
+    if (localStorage.getItem('fw-media-token')) document.getElementById('media-add-link').hidden = false;
+  } catch (e) { /* no storage, no link */ }
+</script>
+
 {% if entries.size == 0 %}
 
 <p class="media-empty">Nothing logged yet. Add the first entry with

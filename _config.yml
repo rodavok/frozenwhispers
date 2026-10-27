@@ -24,9 +24,14 @@ description: >-
 baseurl: ""
 url: "https://rodavok.github.io"
 
-# Media page: when false, comments stay in _data/media.yml as private notes
-# and are not written into the built HTML at all. Flip to true to publish them.
+# Media page: when false, comments are not written into the built HTML at all.
+# Flip to true to publish them. Either way they are readable in _data/media.yml
+# on GitHub, because the repo is public.
 media_show_comments: false
+
+# Where /media/add/ commits new entries. Pushing there rebuilds the site.
+media_repo: rodavok/frozenwhispers
+media_branch: main
 
 # Build settings
 theme: minima

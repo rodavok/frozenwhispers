@@ -4,9 +4,13 @@ _site
 .jekyll-metadata
 vendor
 
-# Bookmarks data (synced from Firefox at build time)
-_data/bookmarks.yml
+# Built site. GitHub Actions builds and publishes it now (see
+# .github/workflows/pages.yml), so the old committed build output is gone.
+docs/
 
 # Import scratch (CSV dumps, etc.)
 imports/
 __pycache__/
+
+# Notion export. Anything committed gets published by the Pages build.
+Private & Shared/

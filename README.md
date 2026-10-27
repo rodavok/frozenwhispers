@@ -18,8 +18,8 @@ bundle exec jekyll serve
 
 Site will be available at http://localhost:4000
 
-Note this builds to `_site/`, which is **not** what gets published — see
-[Deployment](#deployment).
+This builds to `_site/` for previewing only. GitHub builds and publishes its
+own copy when you push — see [Deployment](#deployment).
 
 ---
 
@@ -37,7 +37,8 @@ committed to the repo. The page itself is `media.md` plus
 
 | I want to… | Command |
 |---|---|
-| Add one thing | `python3 add_media.py "Blue Prince"` |
+| Add one thing, from any browser | **+ Add entry** on the Media page (or go to `/media/add/`) |
+| Add one thing, from the terminal | `python3 add_media.py "Blue Prince"` |
 | Add one thing, skip the search guessing | `python3 add_media.py "Dune" --type book` |
 | Add several | `python3 add_media.py "Dune" "Neuromancer" --type book` |
 | Backfill a whole backlog, unattended | `python3 add_media.py --from-file backlog.txt --first` |
@@ -45,7 +46,7 @@ committed to the repo. The page itself is `media.md` plus
 | Change a rating, date, or title | Edit `_data/media.yml` directly |
 | Publish my comments to the site | Set `media_show_comments: true` in `_config.yml` |
 | See it before it goes live | `bundle exec jekyll serve` → http://localhost:4000/media/ |
-| Actually put it online | `./deploy.sh` then commit and push |
+| Actually put it online | Commit and push (entries added on the site are already pushed) |
 
 **Set `$EDITOR` once** and comment-writing stops being painful:
 
@@ -53,7 +54,44 @@ committed to the repo. The page itself is `media.md` plus
 echo 'export EDITOR=nano' >> ~/.bashrc    # or vim, micro, "code --wait"
 ```
 
-## Adding entries
+## Adding entries from the site
+
+Go to https://frozenwhispers.duckdns.org/media/add/, pick a type, and search.
+Results come with covers. Pick one, fill in your dates, rating, and comment,
+and hit **Save to log**.
+
+Save commits the entry to `_data/media.yml` and the cover to `assets/covers/`
+in one commit, straight to `main` through the GitHub API. That push rebuilds
+the site, which is live a minute or two later. Nothing needs to happen on
+your computer; just `git pull` before you next edit locally.
+
+**One-time setup, per browser.** The page needs a GitHub token to commit:
+
+1. Create a [fine-grained token](https://github.com/settings/personal-access-tokens/new).
+2. Repository access: **Only select repositories** → `frozenwhispers`.
+3. Permissions: **Contents** → **Read and write**. Nothing else.
+4. Paste it into the page.
+
+The token stays in that browser's `localStorage` and is sent only to
+`api.github.com`. Once it's saved, an **+ Add entry** link appears on the
+Media page in that browser. Visitors never see the link, and without a token
+the add page can't save anything. When the token expires, the page says so
+and asks for a new one. **Forget token** on the page removes it.
+
+Lookups match the command-line tool's sources, except games: Steam's search
+API refuses requests from web pages, so games are found through Wikidata.
+Wikidata stores each game's Steam app ID, so you still get Steam's portrait
+cover art and a store link, and games not on Steam fall back to the box art
+from Wikipedia. If a cover is wrong or missing, **Change cover** takes an
+image URL or an uploaded file.
+
+The page finds the same duplicates `add_media.py` does, and marks search
+results that are already in the log.
+
+Code: `media-add.md`, `_includes/media-add.html`, `assets/js/media-add.js`,
+with styles under `/* Media: add entry page */` in `assets/css/style.css`.
+
+## Adding entries from the command line
 
 ```bash
 python3 add_media.py "Blue Prince"
@@ -119,8 +157,7 @@ through.
 
 ## Editing entries
 
-There is no editing on the live site — it is static HTML generated from the YAML.
-Everything is edited locally and redeployed.
+The site can add entries but not edit them. Edit locally, then commit and push.
 
 **To rewrite a comment**, which is the one field that is unpleasant to type at a
 prompt:
@@ -137,12 +174,14 @@ Requires `$EDITOR` to be set.
 `_data/media.yml` directly. It is plain YAML and nothing regenerates it behind
 your back.
 
-## Comments are private by default
+## Comments are hidden on the site, not private
 
 `media_show_comments` in `_config.yml` is `false`. Comment text is then **never
-written into the built HTML** — not merely hidden with CSS — so your notes stay
-in `_data/media.yml` as a private record that site visitors cannot read, not
-even from the page source.
+written into the built HTML** — not merely hidden with CSS — so site visitors
+cannot read it, not even from the page source.
+
+They can still read it on GitHub. The repo is public, and `_data/media.yml`
+is in it. Don't write anything in a comment you wouldn't want found.
 
 Set it to `true` to publish them. Rows with a comment then get a `▸` marker and
 expand to show the note when clicked.
@@ -158,7 +197,7 @@ All lookups are free and need no API key:
 | `book`  | Open Library                                   | |
 | `film`  | Wikidata (director, year) + Wikipedia (poster) | iTunes no longer indexes films |
 | `tv`    | TVMaze                                         | Second call fetches the real `Creator`, not the network |
-| `game`  | Steam store                                    | Prefers the portrait capsule over the wide banner |
+| `game`  | Steam store                                    | Prefers the portrait capsule over the wide banner. The site uses Wikidata instead, then Steam art by app ID |
 | `music` | iTunes Search                                  | |
 
 ## Page layout and styling
@@ -167,7 +206,8 @@ All lookups are free and need no API key:
 |---|---|
 | The page itself | `media.md` |
 | Table markup, filtering, sorting, expand/collapse | `_includes/media-table.html` |
-| Styles | `assets/css/style.css`, under `/* Media page */` |
+| Add entry page | `media-add.md`, `_includes/media-add.html`, `assets/js/media-add.js` |
+| Styles | `assets/css/style.css`, under `/* Media page */` and `/* Media: add entry page */` |
 | Data | `_data/media.yml` |
 | Cover images | `assets/covers/` |
 
@@ -207,9 +247,9 @@ phones.
   added: '2026-08-26'
 ```
 
-Entries are sorted newest-activity-first on save. `_data/media.yml` and
-`assets/covers/` are committed to the repo, unlike `_data/bookmarks.yml`, which
-is regenerated from Firefox on every deploy.
+Entries are sorted newest-activity-first on save, by both the script and the
+site. The site inserts each new entry without reformatting the rest of the
+file, so your hand edits stay as you wrote them.
 
 ---
 
@@ -224,7 +264,9 @@ python3 sync_bookmarks.py
 ```
 
 This reads from Firefox's bookmarks database and generates `_data/bookmarks.yml`.
-`deploy.sh` runs it automatically, so your Reading page refreshes on every deploy.
+`deploy.sh` runs it for you. Commit the file and push to update the Reading
+page, because GitHub builds the site from what is committed and has no access
+to your Firefox.
 
 **Note:** Close Firefox first, or the script will use a snapshot copy to avoid database locking issues.
 
@@ -238,19 +280,23 @@ Edit `sync_bookmarks.py` to change:
 
 # Deployment
 
-The site is hosted on GitHub Pages from the **`docs/` folder** on `main`, and
-`docs/` is committed. `bundle exec jekyll serve` builds to `_site/`, which is
-gitignored and never published — so changes are not live until you run
-`deploy.sh`, which rebuilds into `docs/`.
-
-Preview first, then deploy:
+The site is hosted on GitHub Pages and built by GitHub Actions
+(`.github/workflows/pages.yml`). Every push to `main` builds it with Jekyll
+and publishes the result, including the commits the add page makes. Nothing
+built is committed, so there is no `docs/` folder any more.
 
 ```bash
-bundle exec jekyll serve                  # check http://localhost:4000/media/
-./deploy.sh                               # syncs bookmarks, rebuilds into docs/
+bundle exec jekyll serve                  # optional: preview at http://localhost:4000
+./deploy.sh                               # refreshes _data/bookmarks.yml from Firefox
 git add -A && git commit -m "Update site" && git push
 ```
 
-Live a minute or so later at https://frozenwhispers.duckdns.org
+Live a minute or two later at https://frozenwhispers.duckdns.org. Each build
+shows under the repo's **Actions** tab; a failed build leaves the previous
+version of the site up.
 
-**First-time setup:** In GitHub repo settings, set Pages source to `main` branch, `/docs` folder.
+**First-time setup:** In GitHub repo settings → Pages, set **Source** to
+**GitHub Actions**. Do this before the first push that removes `docs/`.
+Switching first is safe, because the current site stays up until the first
+build replaces it. Pushing first leaves Pages serving a `docs/` folder that
+no longer exists.
