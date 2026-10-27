@@ -84,39 +84,39 @@ DEPENDENCIES
   wdm (~> 0.1)
 
 CHECKSUMS
-  addressable (2.8.5)
-  base64 (0.3.0)
-  colorator (1.1.0)
-  concurrent-ruby (1.2.3)
-  csv (3.2.6)
-  em-websocket (0.5.1)
-  eventmachine (1.2.7)
-  ffi (1.17.3-x86_64-linux-gnu)
-  forwardable-extended (2.6.0)
-  http_parser.rb (0.6.0)
-  i18n (1.14.1)
-  jekyll (4.4.1)
-  jekyll-feed (0.17.0)
-  jekyll-sass-converter (2.2.0)
-  jekyll-seo-tag (2.8.0)
-  jekyll-watch (2.2.1)
-  json (2.6.3)
-  kramdown (2.4.0)
-  kramdown-parser-gfm (1.1.0)
-  liquid (4.0.4)
-  listen (3.9.0)
-  mercenary (0.4.0)
-  minima (2.5.1)
-  pathutil (0.16.1)
-  public_suffix (4.0.6)
-  rb-inotify (0.10.1)
-  rexml (3.2.5)
-  rouge (4.2.0)
-  safe_yaml (1.0.5)
-  sassc (2.4.0)
-  terminal-table (3.0.2)
-  unicode-display_width (1.6.1)
-  webrick (1.8.1)
+  addressable (2.8.5) sha256=63f0fbcde42edf116d6da98a9437f19dd1692152f1efa3fcc4741e443c772117
+  base64 (0.3.0) sha256=27337aeabad6ffae05c265c450490628ef3ebd4b67be58257393227588f5a97b
+  colorator (1.1.0) sha256=e2f85daf57af47d740db2a32191d1bdfb0f6503a0dfbc8327d0c9154d5ddfc38
+  concurrent-ruby (1.2.3) sha256=82fdd3f8a0816e28d513e637bb2b90a45d7b982bdf4f3a0511722d2e495801e2
+  csv (3.2.6) sha256=dcf8c9db350d1f883d316d0f2f37020d733f1bf668dd03652370c489302bae50
+  em-websocket (0.5.1) sha256=c39e6d64352eca13aedf4f5d7009666ab7f3ddce75410b883c467cf0e5465caf
+  eventmachine (1.2.7) sha256=994016e42aa041477ba9cff45cbe50de2047f25dd418eba003e84f0d16560972
+  ffi (1.17.3-x86_64-linux-gnu) sha256=3746b01f677aae7b16dc1acb7cb3cc17b3e35bdae7676a3f568153fb0e2c887f
+  forwardable-extended (2.6.0) sha256=1bec948c469bbddfadeb3bd90eb8c85f6e627a412a3e852acfd7eaedbac3ec97
+  http_parser.rb (0.6.0) sha256=f11d0aec50ef26a7d1f991e627ac88acdb5979282aeba7a5c3be6ce0636ed196
+  i18n (1.14.1) sha256=9d03698903547c060928e70a9bc8b6b87fda674453cda918fc7ab80235ae4a61
+  jekyll (4.4.1) sha256=4c1144d857a5b2b80d45b8cf5138289579a9f8136aadfa6dd684b31fe2bc18c1
+  jekyll-feed (0.17.0) sha256=689aab16c877949bb9e7a5c436de6278318a51ecb974792232fd94d8b3acfcc3
+  jekyll-sass-converter (2.2.0) sha256=71894f61b1f062f9d56e90b83b29386c85af349749c5d6277a5ba4b2e69cfd1c
+  jekyll-seo-tag (2.8.0) sha256=3f2ed1916d56f14ebfa38e24acde9b7c946df70cb183af2cb5f0598f21ae6818
+  jekyll-watch (2.2.1) sha256=bc44ed43f5e0a552836245a54dbff3ea7421ecc2856707e8a1ee203a8387a7e1
+  json (2.6.3) sha256=86aaea16adf346a2b22743d88f8dcceeb1038843989ab93cda44b5176c845459
+  kramdown (2.4.0) sha256=b62e5bcbd6ea20c7a6730ebbb2a107237856e14f29cebf5b10c876cc1a2481c5
+  kramdown-parser-gfm (1.1.0) sha256=fb39745516427d2988543bf01fc4cf0ab1149476382393e0e9c48592f6581729
+  liquid (4.0.4) sha256=4fcfebb1a045e47918388dbb7a0925e7c3893e58d2bd6c3b3c73ec17a2d8fdb3
+  listen (3.9.0) sha256=db9e4424e0e5834480385197c139cb6b0ae0ef28cc13310cfd1ca78377d59c67
+  mercenary (0.4.0) sha256=b25a1e4a59adca88665e08e24acf0af30da5b5d859f7d8f38fba52c28f405138
+  minima (2.5.1) sha256=520e52bc631fb16cbb8100660f6caa44f97859e2fa7e397d508deb18739567be
+  pathutil (0.16.1) sha256=7f3f0a2e7165ed4d722249f8dd707f95499394e01e322f2f2524fe1c74458171
+  public_suffix (4.0.6) sha256=a99967c7b2d1d2eb00e1142e60de06a1a6471e82af574b330e9af375e87c0cf7
+  rb-inotify (0.10.1) sha256=050062d4f31d307cca52c3f6a7f4b946df8de25fc4bd373e1a5142e41034a7ca
+  rexml (3.2.5) sha256=a33c3bf95fda7983ec7f05054f3a985af41dbc25a0339843bd2479e93cabb123
+  rouge (4.2.0) sha256=60dd666b3a223467dc72f5b7384764dfd7ad4e50b0df9eff072be58123506eba
+  safe_yaml (1.0.5) sha256=a6ac2d64b7eb027bdeeca1851fe7e7af0d668e133e8a88066a0c6f7087d9f848
+  sassc (2.4.0) sha256=4c60a2b0a3b36685c83b80d5789401c2f678c1652e3288315a1551d811d9f83e
+  terminal-table (3.0.2) sha256=f951b6af5f3e00203fb290a669e0a85c5dd5b051b3b023392ccfd67ba5abae91
+  unicode-display_width (1.6.1) sha256=3d011d8ae44d35ddf1148bdf4de9fb4331dc53b5a39420c6336261823f65f7de
+  webrick (1.8.1) sha256=19411ec6912911fd3df13559110127ea2badd0c035f7762873f58afc803e158f
 
 BUNDLED WITH
   4.0.6
